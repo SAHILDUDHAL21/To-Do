@@ -15,9 +15,9 @@ class _MyWidgetState extends State<HomePage> {
   final controller = TextEditingController();
   //defult list
   List toDoList = [
-    ['Make a video', false],
-    ['Make a video', false],
-    ['Make a video', false],
+    ['Welcome to To Do app', false],
+    ['Add todo', false],
+    ['Track Your Progress', false],
     ['Make a video', false],
   ];
 
@@ -27,14 +27,34 @@ class _MyWidgetState extends State<HomePage> {
     });
   }
 
+  //saving new task
+  void saveNewTask() {
+    setState(() {
+      toDoList.add([controller.text, false]);
+      controller.clear();
+    });
+    Navigator.of(context).pop();
+  }
+
   //create task
   void createNewTask() {
     showDialog(
       context: context,
       builder: (context) {
-        return DailogBox(controller: controller);
+        return DailogBox(
+          controller: controller,
+          onSave: saveNewTask,
+          OnCancel: () => Navigator.of(context).pop(),
+        );
       },
     );
+  }
+
+  //delete(
+  void deleteTask(int index) {
+    setState(() {
+      toDoList.removeAt(index);
+    });
   }
 
   @override
@@ -50,6 +70,20 @@ class _MyWidgetState extends State<HomePage> {
         backgroundColor: Color.fromARGB(255, 146, 146, 143),
         elevation: 0,
       ),
+      drawer: Drawer(
+        backgroundColor: Colors.grey,
+        child: Column(
+          children: [
+            Container(height: 300),
+            Container(
+              child: Text(
+                "Sahil Dudhal",
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
+              ),
+            ),
+          ],
+        ),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: createNewTask,
         child: Icon(Icons.add),
@@ -61,6 +95,7 @@ class _MyWidgetState extends State<HomePage> {
             taskName: toDoList[index][0],
             taskCompleted: toDoList[index][1],
             onChanged: (value) => checkBoxChanged(value, index),
+            deleteFunction: (context) => deleteTask(index),
           );
         },
       ),

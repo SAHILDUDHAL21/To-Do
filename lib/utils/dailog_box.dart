@@ -3,7 +3,15 @@ import 'package:to_do/utils/my_button.dart';
 
 class DailogBox extends StatelessWidget {
   final controller;
-  const DailogBox({super.key, required this.controller});
+  VoidCallback onSave;
+  VoidCallback OnCancel;
+
+  DailogBox({
+    super.key,
+    required this.controller,
+    required this.OnCancel,
+    required this.onSave,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -30,8 +38,8 @@ class DailogBox extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                MyButton(text: "SAVE", onPressed: () {}),
-                MyButton(text: "Cancel", onPressed: () {}),
+                MyButton(text: "SAVE", onPressed: onSave),
+                MyButton(text: "Cancel", onPressed: OnCancel),
               ],
             ),
           ],
