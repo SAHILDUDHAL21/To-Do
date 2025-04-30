@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:to_do/home_page.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+
+  var box = await Hive.openBox("mytodo");
+
   runApp(MyApp());
 }
 
@@ -15,5 +20,11 @@ class MyApp extends StatelessWidget {
       home: HomePage(),
       theme: ThemeData(primarySwatch: Colors.blue),
     );
+  }
+
+  @override
+  void dispose() {
+    Hive.close();
+    //super.dispose();
   }
 }

@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:to_do/data/database.dart';
 import 'package:to_do/utils/dailog_box.dart';
 import 'package:to_do/utils/to_do_tile.dart';
 
@@ -10,30 +12,40 @@ class HomePage extends StatefulWidget {
 }
 
 class _MyWidgetState extends State<HomePage> {
-  //
+  //hive
+  final _mybox = Hive.box("mytodo");
+  TodoDatabase db = TodoDatabase();
+
+  @override
+  void initState() {
+    //if this is the first time opening app
+    if (_mybox.get("TODOLIST") == null) {
+      db.createInitialData();
+    } else {
+      db.loadData();
+    }
+    // TODO: implement initState
+    super.initState();
+  }
+
   //text controller
   final controller = TextEditingController();
-  //defult list
-  List toDoList = [
-    ['Welcome to To Do app', false],
-    ['Add todo', false],
-    ['Track Your Progress', false],
-    ['Make a video', false],
-  ];
 
   void checkBoxChanged(bool? value, int index) {
     setState(() {
-      toDoList[index][1] = !toDoList[index][1];
+      db.toDoList[index][1] = !db.toDoList[index][1];
     });
+    db.updateData();
   }
 
   //saving new task
   void saveNewTask() {
     setState(() {
-      toDoList.add([controller.text, false]);
+      db.toDoList.add([controller.text, false]);
       controller.clear();
     });
     Navigator.of(context).pop();
+    db.updateData();
   }
 
   //create task
@@ -53,8 +65,9 @@ class _MyWidgetState extends State<HomePage> {
   //delete(
   void deleteTask(int index) {
     setState(() {
-      toDoList.removeAt(index);
+      db.toDoList.removeAt(index);
     });
+    db.updateData();
   }
 
   @override
@@ -74,12 +87,10 @@ class _MyWidgetState extends State<HomePage> {
         backgroundColor: Colors.grey,
         child: Column(
           children: [
-            Container(height: 300),
-            Container(
-              child: Text(
-                "Sahil Dudhal",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
-              ),
+            SizedBox(height: 300),
+            Text(
+              "Sahil Dudhal",
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
             ),
           ],
         ),
@@ -89,11 +100,11 @@ class _MyWidgetState extends State<HomePage> {
         child: Icon(Icons.add),
       ),
       body: ListView.builder(
-        itemCount: toDoList.length,
+        itemCount: db.toDoList.length,
         itemBuilder: (context, index) {
           return ToDoTile(
-            taskName: toDoList[index][0],
-            taskCompleted: toDoList[index][1],
+            taskName: db.toDoList[index][0],
+            taskCompleted: db.toDoList[index][1],
             onChanged: (value) => checkBoxChanged(value, index),
             deleteFunction: (context) => deleteTask(index),
           );
