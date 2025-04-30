@@ -22,7 +22,6 @@ class MyApp extends StatelessWidget {
     );
   }
 
-  @override
   void dispose() {
     Hive.close();
     //super.dispose();

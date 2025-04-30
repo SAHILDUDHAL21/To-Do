@@ -20,7 +20,7 @@ class TodoDatabase {
 
   //load data
   void loadData() {
-    toDoList = _myBox.get("TODOST");
+    toDoList = _myBox.get("TODOLIST");
   }
 
   //update data
