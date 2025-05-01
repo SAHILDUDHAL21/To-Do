@@ -112,5 +112,5 @@ Contributions are welcome! Feel free to submit a Pull Request.
 <p align="center">
   Made with ❤️ by Sahil Dudhal
   <br>
-  <a href="https://github.com/yourusername/to_do">⭐ Star us on GitHub</a>
+  <a href="https://github.com/SAHILDUDHAL21/To-Do">⭐ Star us on GitHub</a>
 </p>
