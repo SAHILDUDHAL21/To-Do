@@ -56,7 +56,10 @@ class _MyWidgetState extends State<HomePage> {
         return DailogBox(
           controller: controller,
           onSave: saveNewTask,
-          OnCancel: () => Navigator.of(context).pop(),
+          OnCancel: () {
+            Navigator.of(context).pop();
+            controller.clear();
+          },
         );
       },
     );
@@ -73,31 +76,77 @@ class _MyWidgetState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: Color.fromARGB(255, 0, 0, 0),
       appBar: AppBar(
-        title: const Text(
-          'To Do ',
-          style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
+        title: RichText(
+          textScaler: TextScaler.linear(1.7),
+          text: TextSpan(
+            text: "To",
+            style: TextStyle(
+              fontFamily: "MyFont",
+              color: Color.fromARGB(255, 237, 210, 202),
+              fontSize: 30,
+              fontWeight: FontWeight.w900,
+            ),
+            children: [
+              TextSpan(
+                text: " Do",
+                style: TextStyle(
+                  fontFamily: "MyFont",
+                  color: Color.fromARGB(255, 230, 166, 145),
+                  fontSize: 30,
+                  fontWeight: FontWeight.w900,
+                ),
+              ),
+            ],
+          ),
         ),
         centerTitle: true,
-        backgroundColor: Color.fromARGB(255, 146, 146, 143),
+        backgroundColor: Color.fromARGB(255, 34, 34, 34),
         elevation: 0,
       ),
       drawer: Drawer(
-        backgroundColor: Colors.grey,
+        //semanticLabel: "A B O U T",
+        backgroundColor: Color.fromARGB(255, 34, 34, 34),
         child: Column(
           children: [
+            SizedBox(height: 200),
+            Icon(Icons.account_circle, color: Colors.white, size: 50),
+            //Image.asset('assets/icon/icona.png', height: 20, width: 20),
+            Text(
+              "To Do User",
+              style: TextStyle(
+                fontSize: 30,
+                fontWeight: FontWeight.w900,
+                fontFamily: "MyFont",
+                color: Colors.white,
+              ),
+            ),
+            SizedBox(height: 50),
+            Text("- Add Tasks", style: TextStyle(color: Colors.white)),
+            Text("- Complete It", style: TextStyle(color: Colors.white)),
+            Text(
+              "- Remove Unwanted Tasks",
+              style: TextStyle(color: Colors.white),
+            ),
+            Text(
+              "- Never Forget Important Tasks",
+              style: TextStyle(color: Colors.white),
+            ),
+
             SizedBox(height: 300),
             Text(
-              "Sahil Dudhal",
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.w900),
+              "Developer : Sahil Dudhal",
+              style: TextStyle(color: Colors.white),
             ),
+            Text("Twitter: @sahild1311", style: TextStyle(color: Colors.white)),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Color.fromARGB(255, 34, 34, 34),
         onPressed: createNewTask,
-        child: Icon(Icons.add),
+        child: Icon(Icons.add, color: Color.fromARGB(255, 198, 139, 119)),
       ),
       body: ListView.builder(
         itemCount: db.toDoList.length,

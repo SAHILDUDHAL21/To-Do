@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class MyButton extends StatelessWidget {
   final String text;
   VoidCallback onPressed;
@@ -7,6 +8,9 @@ class MyButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(onPressed: onPressed, child: Text(text));
+    return MaterialButton(
+      onPressed: onPressed,
+      child: Text(text, style: TextStyle(color: Colors.white)),
+    );
   }
 }

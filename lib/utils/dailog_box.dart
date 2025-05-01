@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:to_do/utils/my_button.dart';
 
+// ignore: must_be_immutable
 class DailogBox extends StatelessWidget {
   final controller;
   VoidCallback onSave;
@@ -16,7 +17,7 @@ class DailogBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
-      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+      backgroundColor: Color.fromARGB(255, 34, 34, 34),
       content: Container(
         height: 120,
         child: Column(
@@ -24,11 +25,15 @@ class DailogBox extends StatelessWidget {
           children: [
             //GET USER INPUT
             TextField(
+              cursorColor: Colors.white,
+              style: TextStyle(color: Colors.white),
               controller: controller,
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(20),
-                  borderSide: BorderSide(color: Colors.black),
+                  borderSide: BorderSide(
+                    color: const Color.fromARGB(255, 255, 255, 255),
+                  ),
                 ),
                 hintText: 'Add a new task',
               ),
