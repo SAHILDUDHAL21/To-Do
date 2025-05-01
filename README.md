@@ -15,6 +15,16 @@ A modern, minimalist task management application built with Flutter. This app he
 - 📱 **Responsive Design**: Works smoothly on all screen sizes
 - ⚡ **Fast Performance**: Lightweight and efficient
 
+## 📥 Download
+
+You can download the latest release from our [GitHub Releases](https://github.com/SAHILDUDHAL21/libre-PaperWall/releases/tag/v1.0.0) page:
+
+#### 🤖 Android
+
+[<img src="https://github.com/machiav3lli/oandbackupx/blob/034b226cea5c1b30eb4f6a6f313e4dadcbb0ece4/badge_github.png"
+alt="Get it on GitHub" 
+height="80">](https://github.com/SAHILDUDHAL21/libre-PaperWall/releases/download/v1.0.0/app-release.apk)
+
 ## 📱 Screenshots
 
 <p align="center">
@@ -48,7 +58,7 @@ dependencies:
 
 1. Clone the repository
 ```bash
-git clone https://github.com/yourusername/to_do.git
+https://github.com/SAHILDUDHAL21/To-Do.git
 ```
 
 2. Install dependencies
@@ -91,7 +101,7 @@ flutter run
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the Apache License - see the [LICENSE](https://github.com/SAHILDUDHAL21/To-Do/blob/main/LICENSE) file for details.
 
 ## 🤝 Contributing
 
